@@ -37,7 +37,12 @@ set number "Show line numbers
 set laststatus=2 "Always show statusline
 let g:airline_powerline_fonts = 1 "Enable powerline fonts
 
-" TAB SETTINGS
+" TAB PAGES
+map <F6> :tabn<CR>
+map <F5> :vsplit <bar> :wincmd l<bar> :wincmd T<CR>
+map <F4> :tabp<CR>
+
+" TAB/SPACE SETTINGS
 set tabstop=8 expandtab
 " NERDTREE SETTINGS
 map <F2> :NERDTreeToggle<CR>
@@ -53,6 +58,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_c_checkers = ['gcc']
+let g:syntastic_java_checkers = []
 
 " CTAGS TAGBAR
 map <F8> :TagbarToggle<CR>
