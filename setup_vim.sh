@@ -1,6 +1,7 @@
 #!/bin/bash
 
 vundle="~/.vim/bundle/Vundle.vim"
+bear="./Bear"
 
 function copy_vimrc {
         cp vimrc ~/.vimrc
@@ -8,17 +9,18 @@ function copy_vimrc {
 
 function install_plugins {
         vim +PluginInstall +qall
+        exit
 }
 
 function clone_repos {
-        if [ -d "$vundle" ]; then
+	if [ !  -d $vundle ]; then
                 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
         else
                 echo "Already cloned Vundle"
         fi
 
-        if [ ! -d './Bear' ]; then
-                git clone git@github.com:rizsotto/Bear.git
+        if [ ! -d $bear ]; then
+                git clone https://github.com/rizsotto/Bear.git
         else
                 echo "Already cloned Bear"
         fi
@@ -38,6 +40,7 @@ if [ ! -z $full_install ]; then
         echo "Cloning repositories..."
         clone_repos
         echo "Copying vimrc and installling plugins..."
+        copy_vimrc
         install_plugins
 fi
 
@@ -46,3 +49,5 @@ if [ ! -z $plugin_install ]; then
         copy_vimrc
         install_plugins
 fi
+
+copy_vimrc
