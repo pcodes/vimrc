@@ -23,23 +23,35 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'raimondi/delimitmate'
 Plugin 'tpope/vim-endwise'
 Plugin 'majutsushi/tagbar'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'tmux-plugins/vim-tmux'
+
+" This needs to load last to get all dev icons
+Plugin 'ryanoasis/vim-devicons'
 
 " END PLUGINS
 call vundle#end()            
 filetype plugin indent on
 
 " VISUALS
-colorscheme Tomorrow-Night-Eighties
-let g:airline_theme='tomorrow'
+colorscheme jellybeans
+let g:jellybeans_overrides = {
+                        \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+                        \}
+syntax on
+let g:airline_theme='jellybeans'
 set number "Show line numbers
 :set noshowmode "Hide the second mode (airline already has it)
 set laststatus=2 "Always show statusline
 let g:airline_powerline_fonts = 1 "Enable powerline fonts
+set encoding=UTF-8
 
 " TAB PAGES
 map <F6> :tabn<CR>
 map <F5> :vsplit <bar> :wincmd l<bar> :wincmd T<CR>
 map <F4> :tabp<CR>
+map <F3> :vsplit<CR>
 
 " TAB/SPACE SETTINGS
 set tabstop=8 expandtab
@@ -61,3 +73,5 @@ map <F2> :NERDTreeToggle<CR>
 
 " CTAGS TAGBAR
 map <F8> :TagbarToggle<CR>
+
+"autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
